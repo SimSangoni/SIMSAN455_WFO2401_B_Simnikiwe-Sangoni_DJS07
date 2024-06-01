@@ -1,26 +1,25 @@
-import React from 'react'
-
-
 function Meme() {
     return (
         <main className='main'>
-            <form className='form'>
-            <label>Top Text
+            <div className='form'>
+            <label className='form--label'>Top Text
                 <input 
                 className='form--input' 
                 type="text" 
                 placeholder="Top text" 
                 />
             </label>
-            <label>Bottom Text
+            <label className='form--label'>Bottom Text
                 <input 
                 className='form--input' 
                 type="text" 
                 placeholder="Bottom text"
                 />
             </label>
-                <button className='form--button' >Get a new meme image 🖼</button>
-            </form>
+                <button className='form--button' >
+                    Get a new meme image 🖼
+                </button>
+            </div>
         </main>
     )
 }
