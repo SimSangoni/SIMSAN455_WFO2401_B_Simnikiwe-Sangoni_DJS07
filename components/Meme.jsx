@@ -22,11 +22,14 @@ function Meme() {
 
     const [allMemeImages, memeImagesFunc] = React.useState([])
 
-    React.useEffect(function() {
-        console.log("Effect ran")
-        fetch("https://api.imgflip.com/get_memes")
-            .then(res => res.json())
-            .then(data => memeImagesFunc(data.data.memes))
+    React.useEffect( () => {
+        async function getMemes() {
+            const res = await fetch("https://api.imgflip.com/get_memes")
+            const data = await res.json()
+            memeImagesFunc(data.data.memes)
+        }
+       getMemes()
+            
     }, [])
 
     // console.log(allMemeImages)
