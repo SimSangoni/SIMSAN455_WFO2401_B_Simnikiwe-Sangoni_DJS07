@@ -10,9 +10,20 @@ function Meme() {
         randomImage:"http://i.imgflip.com/1bij.jpg",
         })
 
+    function handleMemeText(event){
+        const {name, value} = event.target
+        memeFunction(prevText => {
+            return {
+                ...prevText,
+                [name]: value
+            }
+        })
+    }
+
     const [allMemeImages, memeImagesFunc] = React.useState(memesData)
     
     function randomImageURL(){
+        event.preventDefault()
         const memes = allMemeImages.data.memes;
         const random = Math.floor(Math.random() * memes.length);
         const memeURL = memes[random].url
@@ -31,6 +42,9 @@ function Meme() {
                 className='form--input' 
                 type="text" 
                 placeholder="Top text" 
+                onChange={handleMemeText}
+                name="topText"
+                value={meme.topText}
                 />
             </label>
             <label className='form--label'>Bottom Text
@@ -38,6 +52,9 @@ function Meme() {
                 className='form--input' 
                 type="text" 
                 placeholder="Bottom text"
+                onChange={handleMemeText}
+                name="bottomText"
+                value={meme.bottomText}
                 />
             </label>
                 <button className='form--button'
@@ -45,7 +62,11 @@ function Meme() {
                     Get a new meme image 🖼
                 </button>
             </div>
-            <img className="meme--image" src={meme.randomImage}></img>
+            <div className="meme">
+                <img src={meme.randomImage} className="meme--image" />
+                <h2 className="meme--text top">{meme.topText}</h2>
+                <h2 className="meme--text bottom">{meme.bottomText}</h2>
+            </div>
         </main>
     )
 }
