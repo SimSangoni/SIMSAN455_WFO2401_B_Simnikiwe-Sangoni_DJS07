@@ -20,13 +20,21 @@ function Meme() {
         })
     }
 
-    const [allMemeImages, memeImagesFunc] = React.useState(memesData)
+    const [allMemeImages, memeImagesFunc] = React.useState([])
+
+    React.useEffect(function() {
+        console.log("Effect ran")
+        fetch("https://api.imgflip.com/get_memes")
+            .then(res => res.json())
+            .then(data => memeImagesFunc(data.data.memes))
+    }, [])
+
+    // console.log(allMemeImages)
     
     function randomImageURL(event){
         event.preventDefault()
-        const memes = allMemeImages.data.memes;
-        const random = Math.floor(Math.random() * memes.length);
-        const memeURL = memes[random].url
+        const random = Math.floor(Math.random() * allMemeImages.length);
+        const memeURL = allMemeImages[random].url
         memeFunction(prevMeme => ({
             ...prevMeme, 
             randomImage: memeURL}))
