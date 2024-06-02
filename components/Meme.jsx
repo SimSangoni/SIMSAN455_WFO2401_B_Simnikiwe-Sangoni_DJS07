@@ -1,4 +1,3 @@
-import memesData from "../memesData.js"
 import React, {useId} from "react";
 
 function Meme() {
