@@ -1,5 +1,5 @@
 import memesData from "../memesData.js"
-import React from "react";
+import React, {useId} from "react";
 
 function Meme() {
 
@@ -22,7 +22,7 @@ function Meme() {
 
     const [allMemeImages, memeImagesFunc] = React.useState(memesData)
     
-    function randomImageURL(){
+    function randomImageURL(event){
         event.preventDefault()
         const memes = allMemeImages.data.memes;
         const random = Math.floor(Math.random() * memes.length);
@@ -33,11 +33,13 @@ function Meme() {
         // console.log(randomMeme.url)
     }
 
+    const id = useId();
+
 
     return (
         <main className='main'>
             <div className='form'>
-            <label className='form--label'>Top Text
+            <label className='form--label' htmlFor={id + '-topText'}>Top Text
                 <input 
                 className='form--input' 
                 type="text" 
@@ -47,7 +49,7 @@ function Meme() {
                 value={meme.topText}
                 />
             </label>
-            <label className='form--label'>Bottom Text
+            <label className='form--label' htmlFor={id + '-bottomText'}>Bottom Text
                 <input 
                 className='form--input' 
                 type="text" 
